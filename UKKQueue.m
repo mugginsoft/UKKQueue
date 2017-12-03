@@ -297,7 +297,7 @@ static UKKQueue * gUKKQueueSharedQueueSingleton = nil;
 //      2004-12-28  UK  Added as suggested by bbum.
 // -----------------------------------------------------------------------------
 
--(void) removeAllPathsFromQueue;
+-(void) removeAllPathsFromQueue
 {
     AT_SYNCHRONIZED( self )
     {
@@ -335,6 +335,7 @@ static UKKQueue * gUKKQueueSharedQueueSingleton = nil;
 
 -(void)		watcherThread: (id)sender
 {
+#pragma unused(sender)
 	int					n;
     struct kevent		ev;
     struct timespec     timeout = { 5, 0 }; // 5 seconds timeout.
@@ -434,7 +435,6 @@ static UKKQueue * gUKKQueueSharedQueueSingleton = nil;
 
 -(void)	setDelegate: (id)newDelegate
 {
-	id	oldProxy = delegateProxy;
 	delegate = newDelegate;
 	delegateProxy = [delegate copyMainThreadProxy];
 	
